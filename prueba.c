@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "queues.h"
-
 ///////////////////////////////////////////////////////////MAIN//////////////////////////////////////////////////////////
 int main(){
 	Queue q;
@@ -13,6 +12,14 @@ int main(){
 	}
 
 	printf("%d\n\n", emptyQueue(&q));
+
+	for (int i = 0; i < 10; ++i) {
+		printf("%d\n", dequeue(&q));
+	}
+
+	for (int i = 0; i < 10; ++i) {
+		enqueue(&q,i+37);
+	}
 
 	for (int i = 0; i < 22; ++i) {
 		printf("%d\n", dequeue(&q));

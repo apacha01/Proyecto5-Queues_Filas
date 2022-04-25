@@ -45,15 +45,15 @@ void initQueue(Queue *q){
 }
 
 void enqueue(Queue *q, int value){
-	if (q->write == ARR_LENGTH-1 && q->read != 0) {
+	if (q->write == ARR_LENGTH && q->read > 1) {
 		q->write = 0;
 	}
-	if (q->write == ARR_LENGTH-1 && q->read == 0) {
+	if (q->write == ARR_LENGTH && q->read == 0) {
 		printf("NOP, FILA LLENA\n");
 	}
 	else{
 		if (q->write == q->read-1) {
-			printf("\nNOP\n");
+			printf("\nNOP, HAY QUE DEJAR BUFFER DE 1\n");
 		}
 		else{
 			*(q->arr + q->write) = value;
@@ -65,14 +65,18 @@ void enqueue(Queue *q, int value){
 
 int dequeue(Queue *q){
 	if (emptyQueue(q)) {
+		q->write = 0;
+		q->read = 0;
 		return -1;
 	}
 	else{
-		if (q->read == ARR_LENGTH-1) {
+		if (q->read == ARR_LENGTH) {
 			q->read = 0;
 		}
+		int aux = *(q->arr + q->read);
+		*(q->arr + q->read) = 0;
 		q->read++;
-		return *(q->arr + q->read - 1);
+		return aux;
 	}
 }
 
