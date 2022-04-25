@@ -48,19 +48,32 @@ void enqueue(Queue *q, int value){
 	if (q->write == ARR_LENGTH-1 && q->read != 0) {
 		q->write = 0;
 	}
-
-	if (q->write == q->read-1) {
-		printf("\nNOP\n");
+	if (q->write == ARR_LENGTH-1 && q->read == 0) {
+		printf("NOP, FILA LLENA\n");
 	}
 	else{
-		*(q->arr + q->write) = value;
-		q->write++;
+		if (q->write == q->read-1) {
+			printf("\nNOP\n");
+		}
+		else{
+			*(q->arr + q->write) = value;
+			q->write++;
+		}
 	}
+	
 }
 
 int dequeue(Queue *q){
-	q->read++;
-	return *(q->arr + q->read - 1);
+	if (emptyQueue(q)) {
+		return -1;
+	}
+	else{
+		if (q->read == ARR_LENGTH-1) {
+			q->read = 0;
+		}
+		q->read++;
+		return *(q->arr + q->read - 1);
+	}
 }
 
 bool emptyQueue(Queue *q){

@@ -8,13 +8,13 @@ int main(){
 	Queue q;
 	initQueue(&q);
 
-	for (int i = 0; i < 10; ++i) {
+	for (int i = 0; i < 22; ++i) {
 		enqueue(&q,i+1);
 	}
 
 	printf("%d\n\n", emptyQueue(&q));
 
-	for (int i = 0; i < 10; ++i) {
+	for (int i = 0; i < 22; ++i) {
 		printf("%d\n", dequeue(&q));
 	}
 
